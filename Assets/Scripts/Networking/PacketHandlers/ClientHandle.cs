@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Debug = UnityEngine.Debug;
 
 public static class ClientHandle
@@ -12,6 +11,7 @@ public static class ClientHandle
 
         Debug.Log($"Message from server: {msg}");
 
+        StartMenu.Instance.ConnectedToServer();
         ClientSend.WelcomeReceived();
         Client.UDP.Connect(); // Now that we have the client's id, connect UDP
     }

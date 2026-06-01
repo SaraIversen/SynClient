@@ -112,7 +112,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -134,8 +134,8 @@ MonoBehaviour:
   Username: 
   CurrentHealth: 0
   MaxHealth: 100
+  _txt_username: {fileID: 4913071418429531799}
   _healthbar: {fileID: 1861826059886094000}
-  itemCount: 0
 --- !u!1 &1541807460526422471
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,8 +409,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Username
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2787007219cfa2e4e8447662bf368be0, type: 2}
+  m_sharedMaterial: {fileID: 5886398937084115794, guid: 2787007219cfa2e4e8447662bf368be0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

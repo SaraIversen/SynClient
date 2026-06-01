@@ -277,7 +277,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   Id: 0
   CurrentHealth: 0
-  MaxHealth: 100
+  MaxHealth: 50
   _healthbar: {fileID: 4297715259811409414}
 --- !u!1 &3572020847488365315
 GameObject:

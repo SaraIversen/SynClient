@@ -41,9 +41,13 @@ public class StartMenu : MonoBehaviour
 
     public void Button_Connect()
     {
-        _go_startMenu.SetActive(false);
         _inputField_username.interactable = false;
         ClientManager.Instance.ConnectToServer();
+    }
+
+    public void ConnectedToServer()
+    {
+        _go_startMenu.SetActive(false);
         _go_gameOverlay.SetActive(true);
     }
 
@@ -52,7 +56,7 @@ public class StartMenu : MonoBehaviour
         // Validate username? Characters between 2 and 16?
 
         string username = _inputField_username.text;
-        UIManager.Instance.SetUsername(username);
+        UIManager.Instance.SetUsernameLocal(username);
         return username;
     }
 }

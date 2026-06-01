@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,13 @@ public class Player : MonoBehaviour
     public float CurrentHealth;
     public float MaxHealth = 100f;
 
+    [Space(10)]
+
+    [SerializeField] private TextMeshProUGUI _txt_username;
     [SerializeField] private Slider _healthbar;
 
     public bool IsDead => CurrentHealth <= 0;
 
-    public int itemCount = 0;
 
     public void Initialize(int id, string username)
     {
@@ -21,6 +24,11 @@ public class Player : MonoBehaviour
         Username = username;
         CurrentHealth = MaxHealth;
         UpdateHealthbar();
+
+        if (Client.ClientId != Id)
+        {
+            UIManager.Instance.SetUsernameRemote(_txt_username, username);
+        }
     }
 
     public void SetHealth(float health)
@@ -49,17 +57,24 @@ public class Player : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
-        UIManager.Instance.ShowDeadOverlay(true);
+
+        if (Client.ClientId == Id)
+        {
+            UIManager.Instance.ShowDeadOverlay(true);
+        }
     }
 
     public void Respawn(Vector3 respawnPos, Vector3 respawnRotationEulerAngles)
     {
         transform.position = respawnPos;
-        Debug.Log(respawnRotationEulerAngles);
-        PlayerCamera.Instance.SetCameraRotation(respawnRotationEulerAngles);
+
+        if (Client.ClientId == Id)
+        {
+            PlayerCamera.Instance.SetCameraRotation(respawnRotationEulerAngles);
+            UIManager.Instance.ShowDeadOverlay(false);
+        }
 
         gameObject.SetActive(true);
-        UIManager.Instance.ShowDeadOverlay(false);
         SetHealth(MaxHealth);
     }
 }

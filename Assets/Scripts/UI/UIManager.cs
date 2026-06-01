@@ -23,9 +23,14 @@ public class UIManager : MonoBehaviour
         _txt_ping.text = $"Ping: {newPing} ms";
     }
 
-    public void SetUsername(string username)
+    public void SetUsernameLocal(string username)
     {
         _txt_username.text = username;
+    }
+
+    public void SetUsernameRemote(TextMeshProUGUI txt_username, string username)
+    {
+        txt_username.text = username;
     }
 
     public void SetHealth(float currentHealth, float maxHealth)
