@@ -4,11 +4,13 @@ public class Projectile : MonoBehaviour
 {
     public int Id { get; private set; }
 
+    [SerializeField] private Rigidbody _rigidBody;
     [SerializeField] private GameObject _explosionPrefab;
 
-    public void Initialize(int _id)
+    public void Initialize(int _id, Vector3 initialForce)
     {
         Id = _id;
+        _rigidBody.AddForce(initialForce);
     }
 
     public void Explode(Vector3 _position)

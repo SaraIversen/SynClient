@@ -23,10 +23,10 @@ public class ProjectileManager : MonoBehaviour
     /// <summary>Spawns a projectile.</summary>
     /// <param name="itemId">The projectile's Id.</param>
     /// <param name="position">The projectile's spawn position.</param>
-    public void SpawnProjectile(int projectileId, Vector3 movementDirection, Vector3 position)
+    public void SpawnProjectile(int projectileId, Vector3 movementDirection, Vector3 initialForce, Vector3 position)
     {
         Projectile projectile = Instantiate(_projectilePrefab, position, Quaternion.LookRotation(movementDirection)).GetComponent<Projectile>();
-        projectile.Initialize(projectileId);
+        projectile.Initialize(projectileId, initialForce);
         _projectiles.Add(projectileId, projectile);
     }
 

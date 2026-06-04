@@ -85,9 +85,10 @@ public static class ClientHandle
         int projectileId = packet.ReadInt();
         Vector3 position = packet.ReadVector3();
         Vector3 movementDirection = packet.ReadVector3();
+        Vector3 initialForce = packet.ReadVector3();
         int thrownByPlayer = packet.ReadInt();
 
-        ProjectileManager.Instance.SpawnProjectile(projectileId, movementDirection, position);
+        ProjectileManager.Instance.SpawnProjectile(projectileId, movementDirection, initialForce, position);
     }
 
     public static void ProjectilePosition(Packet packet)

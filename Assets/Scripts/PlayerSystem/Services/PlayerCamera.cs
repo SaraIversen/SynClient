@@ -44,11 +44,11 @@ public class PlayerCamera : MonoBehaviour
         float _mouseVertical = -Input.GetAxis("Mouse Y");
         float _mouseHorizontal = Input.GetAxis("Mouse X");
 
-        _verticalRotation += _mouseVertical * _sensitivity * Time.deltaTime;
-        _horizontalRotation += _mouseHorizontal * _sensitivity * Time.deltaTime;
+        _verticalRotation += _mouseVertical * _sensitivity;
+        _horizontalRotation += _mouseHorizontal * _sensitivity;
 
         _verticalRotation = Mathf.Clamp(_verticalRotation, -_clampAngle, _clampAngle);
-        //transform.RotateAround(target.position, transform.right, _mouseVertical * sensitivity * Time.deltaTime); // ThirdPerson
+        //transform.RotateAround(target.position, transform.right, _mouseVertical * sensitivity); // ThirdPerson
         transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f); // FirstPerson
         _player.transform.rotation = Quaternion.Euler(0f, _horizontalRotation, 0f);
     }
