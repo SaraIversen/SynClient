@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject _go_deadOverlay;
 
-    [SerializeField] private TextMeshProUGUI _txt_ping;
+    [SerializeField] private TextMeshProUGUI _txt_roundTripTime;
     [SerializeField] private TextMeshProUGUI _txt_username;
 
     [SerializeField] private Slider _healthbar;
@@ -18,9 +18,9 @@ public class UIManager : MonoBehaviour
         Singleton.Initialize(ref Instance, this);
     }
 
-    public void UpdatePing(double newPing)
+    public void UpdateLatency(double newRRT)
     {
-        _txt_ping.text = $"Ping: {newPing} ms";
+        _txt_roundTripTime.text = $"{newRRT} ms";
     }
 
     public void SetUsernameLocal(string username)

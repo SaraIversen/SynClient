@@ -6,7 +6,7 @@ public class ClientManager : MonoBehaviour
     public static ClientManager Instance;
 
     #region Instance Fields
-    private Client _client;
+    public static Client Client;
 
     [SerializeField] private string _ip = "127.0.0.1";
     [SerializeField] private int _tcpPort = 5000;
@@ -27,8 +27,8 @@ public class ClientManager : MonoBehaviour
         _cts = new CancellationTokenSource();
         _clientToken = _cts.Token;
 
-        _client = new Client(_ip, _tcpPort, _udpPort);
-        _ = _client.ConnectToServerAsync(_clientToken);
+        Client = new Client(_ip, _tcpPort, _udpPort);
+        _ = Client.ConnectToServerAsync(_clientToken);
     }
 
     void OnDestroy()

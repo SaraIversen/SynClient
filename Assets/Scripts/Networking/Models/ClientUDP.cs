@@ -27,27 +27,27 @@ public class ClientUDP
 
         using (Packet _packet = new Packet())
         {
-            SendData(_packet);
+            _ = SendDataAsync(_packet);
         }
+
+        _ = UDPReceiveLoop(_cancellationToken); // Begin UDP receive loop
 
         if (!HeartBeat.IsPinging)
         {
             _ = HeartBeat.PingLoopAsync(_cancellationToken);
         }
-
-        _ = UDPReceiveLoop(_cancellationToken);
     }
 
     /// <summary>Sends data to the client via UDP.</summary>
     /// <param name="_packet">The packet to send.</param>
-    public void SendData(Packet _packet)
+    public async Task SendDataAsync(Packet packet)
     {
         try
         {
-            _packet.InsertInt(Client.ClientId); // Insert the client's ID at the start of the packet
+            packet.InsertInt(ClientManager.Client.ClientId); // Insert the client's ID at the start of the packet
             if (Socket != null)
             {
-                _ = Socket.SendAsync(_packet.ToArray(), _packet.Length());
+                await Socket.SendAsync(packet.ToArray(), packet.Length()).ConfigureAwait(false);
             }
         }
         catch (Exception _ex)
@@ -65,12 +65,12 @@ public class ClientUDP
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                UdpReceiveResult result = await Socket.ReceiveAsync();
+                UdpReceiveResult result = await Socket.ReceiveAsync().ConfigureAwait(false);
                 byte[] data = result.Buffer;
 
                 if (data.Length < 4)
                 {
-                    Client.Disconnect();
+                    ClientManager.Client.Disconnect();
                     return;
                 }
 
@@ -109,6 +109,6 @@ public class ClientUDP
         EndPoint = null;
         Socket = null;
 
-        Client.Disconnect();
+        ClientManager.Client.Disconnect();
     }
 }

@@ -7,13 +7,13 @@ public static class ClientHandle
     public static void Welcome(Packet packet)
     {
         string msg = packet.ReadString();
-        Client.ClientId = packet.ReadInt();
+        ClientManager.Client.ClientId = packet.ReadInt();
 
         Debug.Log($"Message from server: {msg}");
 
         StartMenu.Instance.ConnectedToServer();
         ClientSend.WelcomeReceived();
-        Client.UDP.Connect(); // Now that we have the client's id, connect UDP
+        ClientManager.Client.UDP.Connect(); // Now that we have the client's id, connect UDP
     }
 
     public static void Pong(Packet packet)
@@ -21,9 +21,9 @@ public static class ClientHandle
         long now = Stopwatch.GetTimestamp();
         double rrtMs = (now - HeartBeat.LastTimestamp) * 1000 / Stopwatch.Frequency;
 
-        //Debug.Log($"Ping rount-trip time: {rrtMs:F2} ms");
+        Debug.Log($"Latency: {rrtMs} ms");
 
-        UIManager.Instance.UpdatePing(rrtMs);
+        UIManager.Instance.UpdateLatency(rrtMs);
     }
 
     public static void SpawnPlayer(Packet packet)

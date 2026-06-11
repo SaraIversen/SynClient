@@ -12,15 +12,16 @@ public static class HeartBeat
     public static async Task PingLoopAsync(CancellationToken token)
     {
         IsPinging = true;
+        Debug.Log("Ping loop started");
 
         try
         {
-            while (Client.IsConnected && !token.IsCancellationRequested)
+            while (ClientManager.Client.IsConnected && !token.IsCancellationRequested)
             {
                 LastTimestamp = Stopwatch.GetTimestamp();
                 ClientSend.Ping();
 
-                await Task.Delay(3000, token); // Every 3 second.
+                await Task.Delay(5000, token).ConfigureAwait(false); // Every 5 second.
 
                 LastTimestamp = 0;
             }

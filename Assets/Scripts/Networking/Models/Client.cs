@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Client
 {
-    public static int ClientId { get; set; }
+    public int ClientId { get; set; }
 
-    public static ClientTCP TCP { get; private set; }
-    public static ClientUDP UDP { get; private set; }
+    public ClientTCP TCP { get; private set; }
+    public ClientUDP UDP { get; private set; }
 
-    public static bool IsConnected { get; private set; }
+    public bool IsConnected { get; private set; }
 
 
     private string _ip;
@@ -36,7 +36,7 @@ public class Client
     {
         Debug.Log("CLIENT: Trying to connect to server...");
 
-        await _tcpClient.ConnectAsync(_ip, _tcpPort);
+        await _tcpClient.ConnectAsync(_ip, _tcpPort).ConfigureAwait(false);
 
         TCP = new ClientTCP(_tcpClient); // TCP
         UDP = new ClientUDP(_ip, _udpPort, cancellationToken); // UDP
@@ -47,12 +47,12 @@ public class Client
 
         while (IsConnected && !cancellationToken.IsCancellationRequested)
         {
-            await TCP.TCPReceiveLoop(cancellationToken);
+            await TCP.TCPReceiveLoop(cancellationToken).ConfigureAwait(false);
         }
     }
 
     /// <summary>Disconnects from the server and stops all network traffic.</summary>
-    public static void Disconnect()
+    public void Disconnect()
     {
         if (IsConnected)
         {

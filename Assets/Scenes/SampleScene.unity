@@ -335,9 +335,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1899178361}
   - {fileID: 2024969419}
-  - {fileID: 1452752840}
   - {fileID: 1070045130}
+  - {fileID: 1452752840}
   - {fileID: 402706011}
   - {fileID: 773190230}
   m_Father: {fileID: 0}
@@ -1152,7 +1153,7 @@ GameObject:
   - component: {fileID: 367259307}
   - component: {fileID: 367259306}
   m_Layer: 5
-  m_Name: Txt_Ping
+  m_Name: Txt_Latency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2890,7 +2891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   _go_deadOverlay: {fileID: 1062302506}
-  _txt_ping: {fileID: 367259306}
+  _txt_roundTripTime: {fileID: 367259306}
   _txt_username: {fileID: 1290867040}
   _healthbar: {fileID: 1491960278}
 --- !u!4 &1070045130
@@ -7909,6 +7910,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1881391170}
   m_CullTransparentMesh: 1
+--- !u!1 &1899178360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1899178361}
+  - component: {fileID: 1899178362}
+  m_Layer: 0
+  m_Name: SettingsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1899178361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899178360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 89173873}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1899178362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899178360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588d97bb8cf7d074f854ddcd462e82cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameSettings
+  frameRate: 60
 --- !u!1 &1905145808
 GameObject:
   m_ObjectHideFlags: 0

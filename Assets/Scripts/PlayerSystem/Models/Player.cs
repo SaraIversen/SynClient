@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         CurrentHealth = MaxHealth;
         UpdateHealthbar();
 
-        if (Client.ClientId != Id)
+        if (ClientManager.Client.ClientId != Id)
         {
             UIManager.Instance.SetUsernameRemote(_txt_username, username);
         }
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
     public void UpdateHealthbar()
     {
-        if (Client.ClientId == Id)
+        if (ClientManager.Client.ClientId == Id)
         {
             UIManager.Instance.SetHealth(CurrentHealth, MaxHealth);
         }
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     {
         gameObject.SetActive(false);
 
-        if (Client.ClientId == Id)
+        if (ClientManager.Client.ClientId == Id)
         {
             UIManager.Instance.ShowDeadOverlay(true);
         }
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
     {
         transform.position = respawnPos;
 
-        if (Client.ClientId == Id)
+        if (ClientManager.Client.ClientId == Id)
         {
             PlayerCamera.Instance.SetCameraRotation(respawnRotationEulerAngles);
             UIManager.Instance.ShowDeadOverlay(false);

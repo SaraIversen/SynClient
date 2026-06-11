@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
     public void SpawnPlayer(int id, string username, Vector3 position, Quaternion rotation)
     {
         GameObject player;
-        if (id == Client.ClientId)
+        if (id == ClientManager.Client.ClientId)
         {
             player = Instantiate(_localPlayerPrefab, position, rotation);
         }

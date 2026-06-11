@@ -8,7 +8,7 @@ public static class ClientSend
     private static void SendTCPData(Packet packet)
     {
         packet.WriteLength();
-        Client.TCP.SendData(packet);
+        _ = ClientManager.Client.TCP.SendDataAsync(packet);
     }
 
     /// <summary>Sends a packet to the server via UDP.</summary>
@@ -16,7 +16,7 @@ public static class ClientSend
     private static void SendUDPData(Packet packet)
     {
         packet.WriteLength();
-        Client.UDP.SendData(packet);
+        _ = ClientManager.Client.UDP.SendDataAsync(packet);
     }
     #endregion
 
@@ -26,7 +26,7 @@ public static class ClientSend
     {
         using (Packet packet = new Packet((int)PacketId.welcomeReceived))
         {
-            packet.Write(Client.ClientId);
+            packet.Write(ClientManager.Client.ClientId);
             packet.Write(StartMenu.Instance.GetUsername());
 
             SendTCPData(packet);
@@ -37,7 +37,7 @@ public static class ClientSend
     {
         using (Packet packet = new Packet((int)PacketId.ping))
         {
-            packet.Write(Client.ClientId);
+            packet.Write(ClientManager.Client.ClientId);
 
             SendUDPData(packet);
         }
